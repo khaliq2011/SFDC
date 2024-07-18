@@ -1,0 +1,19 @@
+<template>
+    <lightning-button onclick={doAsyncOperation} label="getAcc"></lightning-button>
+    <lightning-button onclick={doSome} label="then"></lightning-button>
+
+    <ul>
+    <template for:each={getCont} for:item="acc">
+        <li key={acc.id}>
+            {acc.Name}
+        </li>
+    </template>
+</ul>
+<ul>
+    <template for:each={values} for:item="acc">
+        <li key={acc.id}>
+            {acc.Name}
+        </li>
+    </template>
+</ul>
+</template>

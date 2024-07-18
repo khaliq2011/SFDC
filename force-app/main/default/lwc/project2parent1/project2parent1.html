@@ -1,0 +1,16 @@
+<template>
+        <div class="colour">
+            <h1><b>Parent</b></h1>
+
+        <div class="slds-grid slds-gutters">
+
+       <template for:each={values} for:item="v">
+        <div class="slds-col" key={v.id}>
+            <div class="slds-box">
+ {v}
+            </div></div>
+       </template>
+        </div>
+       <c-proj2child1 onstatus={processInfo}></c-proj2child1>
+        </div>
+</template>

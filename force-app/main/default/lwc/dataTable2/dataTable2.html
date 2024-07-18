@@ -1,0 +1,27 @@
+<template>
+    <lightning-card>
+    <table>
+       <thead>
+        <template for:each={accountColumns} for:item="acc">
+            <th key={acc}>{acc}</th>
+        </template>
+      
+       </thead>
+       <tbody>
+        <template for:each={Accounttabledata} for:item="abc">
+            <tr key={abc}>
+                <template for:each={abc} for:item="abcd">
+
+                    <td key={abcd}>{abcd.Name}</td>
+
+                </template>
+                <td>
+                    <lightning-button label="show contacts"></lightning-button>
+                </td>
+            </tr>
+            
+        </template>
+       </tbody>
+    </table>
+</lightning-card>
+</template>

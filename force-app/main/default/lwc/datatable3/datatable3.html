@@ -1,0 +1,136 @@
+<template>
+    <template if:true={rows}>
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered"
+            aria-label="Example of data table">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <template for:each={columns} for:item="column">
+                        <th key={column.field} scope="col">
+                            {column.label}
+                        </th>
+                    </template>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <template for:each={rows} for:item="record">
+                    <tr key={record.Id} class="slds-hint-parent">
+                        <template for:each={record.fields} for:item="column">
+                            <td key={column.field}>
+                                {column.value}
+                            </td>
+                        </template>
+                        <td>
+                            <lightning-button variant="neutral" label="Show Contacts" data-id={record.Id}
+                                onclick={toggleContacts}>
+                            </lightning-button>
+                        </td>
+                    </tr>
+                    <template if:true={record.showContacts}>
+                        <tr key={record.Id}>
+                            <td colspan={colspanValue}>
+                                <table class="slds-table slds-table_cell-buffer slds-table_bordered"
+                                    aria-label="Contacts table">
+                                    <thead>
+                                        <tr class="slds-line-height_reset">
+                                            <template for:each={columnsofcontacts} for:item="contactColumn">
+                                                <th key={contactColumn.field} scope="col">
+                                                    {contactColumn.label}
+                                                </th>
+                                            </template>
+                                            <th>
+                                                <lightning-button label="New Contact" variant="neutral"
+                                                    onclick={saveCont}  name="new"></lightning-button>
+                                                <template if:true={showCreateCont}>
+
+
+
+                                                    <section role="dialog" tabindex="-1" aria-modal="true"
+                                                        aria-labelledby="modal-heading-01"
+                                                        class="slds-modal slds-fade-in-open">
+                                                        <div class="slds-modal__container">
+                                                            <button
+                                                                class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse">
+                                                                <svg class="slds-button__icon slds-button__icon_large"
+                                                                    aria-hidden="false">
+                                                                    <use
+                                                                        xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close">
+                                                                    </use>
+                                                                </svg>
+                                                                <span class="slds-assistive-text">Cancel and
+                                                                    close</span>
+                                                            </button>
+                                                            <div class="slds-modal__header">
+                                                                <h1 class="slds-modal__title slds-hyphenate"
+                                                                    tabindex="-1">Modal header</h1>
+                                                            </div>
+                                                            <div class="slds-modal__content slds-p-around_medium">
+
+                                                                <lightning-card>
+                                                                    <lightning-record-edit-form 
+                                                                        object-api-name="Contact"
+                                                                        record-id={contrecordid} onsuccess={saveCont}>
+                                                                        <template for:each={contactcreate}
+                                                                            for:item="col">
+                                                                            <p key={col.id}>
+                                                                                <lightning-input-field
+                                                                                    field-name={col}></lightning-input-field>
+                                                                            </p>
+                                                                        </template>
+                                                                        <div class="slds-modal__footer">
+                                                                            <lightning-button type="submit"
+                                                                                variant="brand"
+                                                                                label="Save Contact"></lightning-button>
+                                                                            <lightning-button variant="brand"
+                                                                                label="Cancel"
+                                                                                onclick={cancel}></lightning-button>
+                                                                        </div>
+                                                                    </lightning-record-edit-form>
+
+                                                                </lightning-card>
+
+
+                                                            </div>
+
+                                                        </div>
+                                                    </section>
+                                                    <div class="slds-backdrop slds-backdrop_open" role="presentation">
+                                                    </div>
+
+
+
+
+
+
+
+                                                </template>
+                                            </th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <template for:each={record.contactFields} for:item="contact">
+                                            <tr key={contact.Id}>
+                                                <template for:each={contact.fields} for:item="contactField">
+                                                    <td key={contactField.field}>
+                                                        {contactField.value}
+                                                    </td>
+                                                   
+                                                </template>
+                                                <td>
+                                                    
+                                                    <lightning-button-icon icon-name="utility:edit" alternative-text="Edit" size="small" title="small size" data-id={contact.Id} onclick={saveCont}></lightning-button-icon>
+ 
+                                                                         </td>
+                                            </tr>
+                                        </template>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </template>
+                </template>
+            </tbody>
+        </table>
+    </template>
+</template>

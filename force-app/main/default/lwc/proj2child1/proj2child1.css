@@ -1,0 +1,9 @@
+.clicked {
+    background-color: green ;
+}
+.notclicked {
+    background-color: red ;
+}
+.childcolor {
+    background-color: #e6e6fa;
+}
