@@ -1,0 +1,49 @@
+<apex:page setup="false" sidebar="false" showHeader="false" standardController="Users__c"  >
+<style>
+body
+{
+
+   background-color: lightcyan; }
+   </style>
+   
+   <apex:tabPanel headerAlignment="center" >
+   <apex:tab label="Home">
+   <apex:form ><apex:pageBlock >
+   <apex:pageblockSection id="ab" columns="1">
+   <apex:inputField value="{!Users__c.name}"/>
+      <apex:inputsecret value="{!Users__c.Password__c}"/>
+            
+
+   </apex:pageblockSection>
+   <apex:pageBlockButtons location="bottom">
+   <apex:commandButton value="login" action="{!save}" />
+   <apex:commandLink value="NEW USER ?" action="{!save}" />
+   </apex:pageBlockButtons>
+   
+   
+   
+   
+   </apex:pageBlock></apex:form>
+         </apex:tab>
+
+   <apex:tab label="Flights">
+         </apex:tab>
+
+      <apex:tab label="Bag Details">
+      </apex:tab>
+
+   <apex:tab label="Food Details">
+         </apex:tab>
+
+      <apex:tab label="Service History">
+            </apex:tab>
+ <apex:tab label="About Us">
+         </apex:tab>
+
+
+
+   
+   </apex:tabPanel>
+
+
+</apex:page>

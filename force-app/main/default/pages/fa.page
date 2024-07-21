@@ -1,0 +1,15 @@
+<apex:page setup="false" sidebar="false" ShowHeader="false" >
+<apex:sectionHeader title="POSITION EDIT" subtitle="Edit"/>
+<apex:form >
+<apex:pageblock title="POSITION EDIT">
+<apex:pageblocksection title="Account details" collapsible="true"></apex:pageBlockSection>
+<apex:pageblocksection title="contact details" collapsible="true"></apex:pageBlockSection>
+<apex:pageblocksection title="case details" collapsible="true"></apex:pageBlockSection>
+<apex:pageblocksection title="opportunity details" collapsible="true"></apex:pageBlockSection>
+<apex:pageblockButtons location="top">
+<apex:commandbutton value="save"/>
+<apex:commandlink value="cancel"/>
+</apex:pageblockButtons>
+</apex:pageblock>
+</apex:form>
+</apex:page>

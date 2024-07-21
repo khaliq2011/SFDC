@@ -1,0 +1,13 @@
+<apex:page standardController="lead" tabstyle="lead" setup="false" sidebar="false">
+<apex:sectionHeader title="New leads"/>
+<apex:form >
+<apex:pageblock title="New lead" >
+<apex:pageBlockButtons >
+<apex:commandButton value="save" action="{!save}"/>
+<apex:commandButton value="cancel" action="{!cancel}"/>
+</apex:pageBlockButtons>
+<apex:pageblocksection collapsible="true">
+<apex:inputField value="{!lead.status}"/>
+</apex:pageblocksection>
+</apex:pageblock></apex:form>
+</apex:page>

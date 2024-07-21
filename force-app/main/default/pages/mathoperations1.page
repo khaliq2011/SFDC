@@ -1,0 +1,17 @@
+<apex:page controller="op">
+<apex:sectionHeader title="f"/>
+<apex:form >
+<apex:pageBlock >
+<apex:pageblocksection title="calculationss">
+
+<apex:inputtext label="first" value="{!n1}"/>
+<apex:inputtext label="second" value="{!n2}"/>
+
+result is :{!n3}
+</apex:pageblocksection>
+<apex:pageblockButtons location="bottom">
+<apex:commandButton value="add" action="{!aaa}"/></apex:pageblockButtons>
+
+</apex:pageBlock>
+</apex:form>
+</apex:page>

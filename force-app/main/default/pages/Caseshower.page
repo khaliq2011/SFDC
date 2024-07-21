@@ -1,0 +1,37 @@
+<apex:page controller="showcases" setup="false" showHeader="false" >
+<apex:sectionHeader title="All cases"/>
+<apex:form >
+<apex:pageblock title="Total cases are" >
+<apex:pageblockbuttons location="bottom">
+<apex:commandButton value="search" action="{!search}" rerender="pg"/>
+</apex:pageblockbuttons>
+<apex:pageblockSection title="cases">
+<apex:inputtext label="Find Cases" html-placeholder="starts with" />
+</apex:pageblockSection>
+
+<apex:pageBlock id="pg">
+<apex:pageblocktable value="{!lstcases}" var="cs">
+<apex:column headervalue="casenumber" value="{!cs.casenumber}"/>
+<apex:column value="{!cs.status}"/>
+<apex:column value="{!cs.id}"/>
+
+
+
+
+
+
+
+ </apex:pageblocktable>
+
+</apex:pageblock>
+
+
+
+
+
+</apex:pageblock>
+</apex:form>
+
+
+
+</apex:page>

@@ -1,0 +1,19 @@
+<apex:page setup="false" showheader="false" sidebar="false" standardController="account">
+<apex:sectionHeader title="Account creation" subtitle="New account"/>
+<apex:form id="formm">
+<apex:pageblock >
+<apex:pageblockbuttons location="bottom" >
+<apex:commandbutton id="k" value="save" action="{!save}"/>
+</apex:pageBlockButtons>
+<apex:pageblocksection id="pf" title="basic" collapsible="true" columns="3">
+<apex:inputField id="name" value="{!account.name}"/>
+<apex:inputField id="rat" value="{!account.rating}"/>
+<apex:inputField id="indu" value="{!account.industry}"/>
+
+
+</apex:pageblocksection> 
+
+
+</apex:pageblock>
+</apex:form>
+</apex:page>

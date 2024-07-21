@@ -1,0 +1,50 @@
+<apex:page sidebar="false"  showheader="false" controller="StudentDetails" TabStyle="account">
+
+<apex:sectionHeader title="About Student"/>
+<apex:form id="stu">
+<apex:pageblock title="Student Registration" >
+<apex:pageblockButtons location="bottom" >
+<apex:commandButton value="save"/>
+<apex:commandButton value="cancel"/>
+<apex:commandButton value="quicksave"/>
+
+</apex:pageblockButtons>
+<apex:pageBlockSection title="Basic info" collapsible="false">
+student name is : {!name} <br/>
+student feeamount is : {!feeamount} <br/>
+student is active   : {!isactive} <br/>
+
+</apex:pageBlockSection>
+<apex:pageBlockSection title="Basic info" collapsible="true">
+
+student name is : {!name} <br/>
+student feeamount is : {!feeamount} <br/>
+student is active   : {!isactive} <br/>
+
+</apex:pageBlockSection>
+<apex:pageBlockSection title="Basic info" collapsible="true">
+student name is : {!name} <br/>
+student feeamount is : {!feeamount} <br/>
+student is active   : {!isactive} <br/>
+
+</apex:pageBlockSection>
+<apex:pageBlockSection title="Basic info" collapsible="true">
+student name is : {!name} <br/>
+student feeamount is : {!feeamount} <br/>
+student is active   : {!isactive} <br/>
+
+</apex:pageBlockSection>
+<apex:pageBlockSection title="Basic info" collapsible="true">
+student name is : {!name} <br/>
+student feeamount is : {!feeamount} <br/>
+student is active   : {!isactive} <br/>
+
+</apex:pageBlockSection>
+
+</apex:pageblock>
+</apex:form>
+
+
+
+
+</apex:page>

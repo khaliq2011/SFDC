@@ -1,0 +1,15 @@
+<apex:page setup="false" showHeader="false" sidebar="false" standardcontroller="account" extensions="fetchaccrecs" >
+<apex:sectionHeader title="List Of Accounts"/>
+<apex:form >
+<apex:pageBlock >
+
+<apex:pageBlockSection id="d" title="No of accounts ">
+
+</apex:pageBlockSection>
+</apex:pageBlock>
+
+
+</apex:form>
+  
+
+</apex:page>

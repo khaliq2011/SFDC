@@ -1,0 +1,7 @@
+<apex:page controller="A">
+{!name}<br/>
+
+{!salary}
+
+ 
+</apex:page>

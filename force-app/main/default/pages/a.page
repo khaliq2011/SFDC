@@ -1,0 +1,37 @@
+<apex:page controller="showaccounts" setup="false" showHeader="false" >
+<apex:sectionHeader title="All cases"/>
+<apex:form >
+<apex:pageblock title="Search Accounts">
+        <apex:pageblocksection title="Search Records" columns="2" collapsible="false">
+            
+            <apex:inputtext label="Enter Search Text : " html-placeholder="Enter Account Name" value="{!searchText}"/>
+            <apex:commandButton value="Search Accounts" action="{!Search}" rerender="pgBlock"/>
+        </apex:pageblocksection>
+    </apex:pageblock>
+
+<apex:pageBlock id="pg">
+<apex:pageblocktable value="{!lstaccounts}" var="cs">
+<apex:column headervalue="account name"><apex:outputLink value="{!cs.id}" target="_blank">{!cs.id}</apex:outputLink></apex:column>
+<apex:column value="{!cs.industry}"/>
+<apex:column value="{!cs.id}"/>
+
+
+
+
+
+
+
+ </apex:pageblocktable>
+
+</apex:pageblock>
+
+
+
+
+
+
+</apex:form>
+
+
+
+</apex:page>

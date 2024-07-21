@@ -1,0 +1,20 @@
+<apex:page controller="ft" setup="false" sidebar="false" showHeader="false">
+<APEX:sectionHeader title="Accountsc"/>
+<apex:form >
+<apex:pageblock >
+<apex:pageBlockButtons location="bottom">
+<apex:commandButton value="serch" action="{!serch}"/>
+</apex:pageBlockButtons>
+<apex:pageBlockSection title="details">
+<apex:inputtext label="search text" html-placeholder="with" value="{!searchtext}"/>
+</apex:pageblocksection>
+<apex:pageBlockTable value="{!lstacc}" var="accoun">
+
+<apex:column headerValue="NAME"  ><apex:outputLink value="/{!accoun.id}" target="_blank">{!accoun.id}</apex:outputLink></apex:column>
+<apex:column value="{!accoun.id}" />
+
+</apex:pageBlockTable>
+
+</apex:pageblock>
+</apex:form>
+</apex:page>

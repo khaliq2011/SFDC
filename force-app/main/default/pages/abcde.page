@@ -1,0 +1,45 @@
+<apex:page Controller="Inventory"  setup="false" sidebar="false">
+  <apex:form >
+  <apex:pageblock >
+  <apex:pageBlockSection columns="1" >
+
+   
+        <apex:pageBlockSectionItem >
+
+    <apex:outputLabel >No of Inventory</apex:outputLabel>
+
+  <apex:inputtext value="{!no_of_inventory}"/></apex:pageBlockSectionItem>
+        <apex:pageBlockSectionItem >
+        
+
+    <apex:outputLabel >Operation</apex:outputLabel>
+
+    <apex:inputtext value="{!operation}"/>
+    </apex:pageBlockSectionItem>
+
+
+  </apex:pageBlockSection>
+  <apex:pageBlockButtons location="top">
+  <apex:commandButton value="Go" action="{!getlst}" rerender="pb1"/>
+  </apex:pageBlockButtons>
+  <apex:pageblockSection Title="History">
+  
+  
+  </apex:pageblockSection>
+  
+  <apex:pageBlockSection id="pb1">
+  <apex:pageblockTable value="{!lst}" var="l">
+  <apex:column value="{!l.total__r.Remaining__c}"/>
+    <apex:column value="{!l.no_of_inventory__c}"/>
+  <apex:column value="{!l.Operation__c}"/>
+
+
+  
+  </apex:pageblockTable>
+  
+  
+  </apex:pageBlockSection>
+  </apex:pageblock>
+  
+  </apex:form>
+  </apex:page>

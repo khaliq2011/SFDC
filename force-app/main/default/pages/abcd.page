@@ -1,0 +1,22 @@
+<apex:page standardController="Inventory__c" recordSetVar="lstInventories">
+  <apex:form >
+  <apex:pageblock >
+  <apex:pageBlockSection columns="1" >
+    <apex:inputfield value="{!Inventory__c.total__c}"/>
+
+  <apex:inputField value="{!Inventory__c.name}"/>
+  <apex:inputfield value="{!Inventory__c.no_of_inventory__c}"/>
+    <apex:inputfield value="{!Inventory__c.Operation__c}"/>
+
+  </apex:pageBlockSection>
+  <apex:pageBlockButtons location="top">
+  <apex:commandButton value="Go"/>
+  </apex:pageBlockButtons>
+  <apex:pageblockSection Title="History">
+  
+  
+  </apex:pageblockSection>
+  </apex:pageblock>
+  
+  </apex:form>
+  </apex:page>

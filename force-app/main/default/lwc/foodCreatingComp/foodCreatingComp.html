@@ -1,0 +1,88 @@
+<template>
+    <lightning-card title="To Create Multiple Records">
+        <lightning-record-edit-form object-api-name="Food__c">
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-size_1-of-6">
+                    <lightning-input-field field-name="Name"></lightning-input-field>
+                </div>
+            </div>
+
+            <template for:each={ListOfItems} for:item="item">
+                <lightning-record-edit-form object-api-name="Ingredient__c" key={item.id}>
+                    <div class="slds-grid slds-wrap">
+                        <div class="slds-col slds-size_1-of-6">
+                            <!--   <div class="search-box">-->
+                                
+                                <div class="slds-form-element">
+                                    <label class="slds-form-element__label" for="text-input-id-1">Search</label>
+                                    <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right" onclick={handleSearch}  data-index={item.id}>
+                                        <lightning-icon size="x-small" class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default" icon-name="utility:search" data-index={item.id}>
+
+                                        </lightning-icon>
+                                        <input type="text" class="slds-input" />
+                                    </div>
+                                </div>
+
+                              <!-- <lightning-input
+                                    label="Search in API"
+                                    placeholder="Search Ingredients..."
+                                    onchange={handleSearch}
+                                    data-index={item.id}
+                                ></lightning-input>--> 
+                                <template if:true={filteredFoodOptions.length}>
+                                    <ul class="slds-listbox slds-listbox_vertical slds-dropdown slds-dropdown_fluid">
+                                        <template for:each={filteredFoodOptions} for:item="option" >
+                                            <li
+                                                key={option.value}
+                                                data-value={option.value}
+                                                onclick={handleOptionClick}
+                                                class="slds-listbox__item"
+                                                data-index={item.id}
+                                            >
+                                                <div class="slds-listbox__option slds-listbox__option_plain slds-media slds-media_small slds-media_center">
+                                                    <span class="slds-media__body" data-index={item.id}>{option.label}</span>
+                                                </div>
+                                            </li>
+                                        </template>
+                                    </ul>
+                                </template>
+                            </div>
+                            <lightning-record-picker
+                                label="Ingredients"
+                                placeholder="Search Ingredients..."
+                                object-api-name="Ingredient__c"
+                                onchange={handleRecordPicker}
+                                data-index={item.id}
+                            ></lightning-record-picker>
+                            <lightning-button
+                                label="Fetch from API"
+                                onclick={handleFetchFromApi}
+                                data-index={item.id}
+                                class="slds-m-left_small"
+                            ></lightning-button>
+                        </div>
+                        <div class="slds-col slds-size_1-of-6">
+                            <lightning-input-field field-name="Carbohydrates__c" data-index={item.id}></lightning-input-field>
+                        </div>
+                        <div class="slds-col slds-size_1-of-6">
+                            <lightning-input-field field-name="Fats__c" data-index={item.id}></lightning-input-field>
+                        </div>
+                        <div class="slds-col slds-size_1-of-6">
+                            <lightning-input-field field-name="Proteins__c" data-index={item.id}></lightning-input-field>
+                        </div>
+                        <div class="slds-col slds-size_1-of-6">
+                            <lightning-input-field field-name="Fibre__c" data-index={item.id}></lightning-input-field>
+                        </div>
+                        <div class="slds-col slds-size_1-of-6">
+                            <lightning-icon icon-name="action:new" alternative-text="Settings" title="Settings" onclick={addRow} data-id={item.id}></lightning-icon>
+                            <lightning-icon icon-name="action:delete" alternative-text="Settings" title="Settings" onclick={deleteRow} data-id={item.id}></lightning-icon>
+                        </div>
+                    </div>
+                </lightning-record-edit-form>
+            </template>
+
+            <lightning-button label="Save Contacts" type="submit" onclick={handleSave}></lightning-button>
+            <lightning-button label="Reset Values" onclick={resetValues}></lightning-button>
+        </lightning-record-edit-form>
+    </lightning-card>
+</template>

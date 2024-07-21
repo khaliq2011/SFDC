@@ -1,0 +1,21 @@
+<apex:page controller="showacc" setup="false" showHeader="false" >
+ <apex:sectionheader title="Showaccounts"/>
+ <apex:form >
+ <apex:pageblock title="show all accounts">
+ <apex:pageBlockButtons location="bottom">
+ <apex:commandButton value="search" action="{!sear}"/>
+
+ </apex:pageBlockButtons>
+ <apex:pageblockSection >  <apex:inputtext label="show account records" html-placeholder="starts with" value="{!text}"/>
+ </apex:pageblockSection>
+<apex:pageblocktable value="{!lstacc}" var="accc">
+
+<apex:column headervalue="account id" ><apex:outputLink value="/{!accc.id}" target="_blank">{!accc.id} </apex:outputLink></apex:column>
+<apex:column value="{!accc.rating}"/>
+<apex:column value="{!accc.name}"/>
+</apex:pageblocktable>
+ 
+ 
+ </apex:pageblock>
+ </apex:form>
+</apex:page>
