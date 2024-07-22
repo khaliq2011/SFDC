@@ -27,8 +27,7 @@ public class ContactAmountRollUpOnAccount {
                 System.debug('id'+acc.Id);
                 System.debug('id'+acc.AccountAmountOne__c);
                 System.debug('id'+acc.NoOfValues__c);
-                
-
+            
 
             accountsToUpdate.add(acc);
         }

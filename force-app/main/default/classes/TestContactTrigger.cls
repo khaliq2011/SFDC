@@ -1,92 +1,93 @@
 @isTest
 public class TestContactTrigger {
-    @isTest
-    static void validateInsert() {
-        Account acc = new Account(Name = 'Samad', Rating = 'Hot');
-        insert acc;
+	@TestSetup
+	static void InsertRecords() {
+		Account acc = TestDataFactory.createAccount();
 
-        Contact con1 = new Contact(LastName = 'sameer', AccountId = acc.Id, ContactAmountOne__c = 10, ContactAmountTwo__c = 10, NoOfValues__c = 2);
-        Contact con2 = new Contact(LastName = 'sameer', AccountId = acc.Id, ContactAmountOne__c = 15, ContactAmountTwo__c = 10, NoOfValues__c = 2);
+		// Id AccountId,Number AmountOne,Number AmountTwo,Number
+		// NoOfValues,String LastName
+		Contact con1 = TestDataFactory.createContact(acc.id, 12, 10, 2, 'sameer');
+		Contact con2 = TestDataFactory.createContact(acc.id, 15, 10, 2, 'sharath');
+	}
 
-        insert con1;
-        insert con2;
 
-        List <AggregateResult> aggregateResults = [
-            SELECT AccountId, SUM(ContactAmountOne__c) AmountOne, SUM(ContactAmountTwo__c) AmountTwo, SUM(NoOfValues__c) NoOf
-            FROM Contact
-            WHERE AccountId =: acc.Id
-            GROUP BY AccountId
-        ];
+	@isTest
+	static void validateInsert() {
+		Account AccountFetched = [
+			SELECT id, AccountAmountOne__c, AccountAmountTwo__c, NoOfValues__c
+			FROM Account
+			WHERE Name = 'Test Account'
+		];
 
-        System.debug('Aggregate Results insert' + aggregateResults);
+		System.debug('Results insert' + AccountFetched);
 
-        System.assertEquals(25, (Decimal) aggregateResults[0].get('AmountOne'), 'Value should be 25');
-        System.assertEquals(20, (Decimal) aggregateResults[0].get('AmountTwo'), 'Value should be 20');
-        System.assertEquals(4, (Decimal) aggregateResults[0].get('NoOf'), 'Value should be 4');
-    }
+		System.assertEquals(27, AccountFetched.AccountAmountOne__c, 'Value should be 27');
+		System.assertEquals(20, AccountFetched.AccountAmountTwo__c, 'Value should be 20');
+		System.assertEquals(4, AccountFetched.NoOfValues__c, 'Value should be 4');
+	}
 
-    @isTest
-    static void validateUpdate() {
-        validateInsert();
 
-        Account acc = [
-            SELECT Id
-            FROM Account
-            WHERE Name = 'Samad'
-            LIMIT 1
-        ];
-        List <Contact> listOfContacts = [
-            SELECT Id, ContactAmountOne__c, ContactAmountTwo__c, NoOfValues__c
-            FROM Contact
-            WHERE AccountId =: acc.Id
-        ];
 
-        for (Contact c: listOfContacts) {
-            c.ContactAmountOne__c = 12;
-            c.ContactAmountTwo__c = 12;
-            c.NoOfValues__c = 6;
-        }
-        update listOfContacts;
+	@isTest
+	static void validateUpdate() {
+		Account acc = [
+			SELECT
+				Id,
+				(
+					SELECT id, ContactAmountOne__c, ContactAmountTwo__c, NoOfValues__c
+					FROM Contacts
+				)
+			FROM Account
+			WHERE Name = 'Test Account'
+			LIMIT 1
+		];
 
-        List <AggregateResult> aggregateResults = [SELECT AccountId,
-            SUM(ContactAmountOne__c) AmountOne,
-            SUM(ContactAmountTwo__c) AmountTwo,
-            SUM(NoOfValues__c) NoOf
-            FROM Contact
-            WHERE AccountId =: acc.Id
-            GROUP BY AccountId
-        ];
+		List<Contact> listOfContacts = new List<Contact>();
+		for (Contact c : acc.Contacts) {
+			c.ContactAmountOne__c = 12;
+			c.ContactAmountTwo__c = 15;
+			c.NoOfValues__c = 4;
+			listOfContacts.add(c);
+		}
 
-        System.debug('after Update: ' + aggregateResults);
+		update listOfContacts;
 
-        System.assertEquals(24, (Decimal) aggregateResults[0].get('AmountOne'), 'Value should be 24');
-        System.assertEquals(24, (Decimal) aggregateResults[0].get('AmountTwo'), 'Value should be 24');
-        System.assertEquals(12, (Decimal) aggregateResults[0].get('NoOf'), 'Value should be 12');
-    }
+		Account AccountFetched = [
+			SELECT id, AccountAmountOne__c, AccountAmountTwo__c, NoOfValues__c
+			FROM Account
+			WHERE Name = 'Test Account'
+		];
 
-    @isTest
-    static void validateDelete() {
-        validateInsert();
+		System.debug('Results insert' + AccountFetched);
 
-        Account acc = [SELECT Id FROM Account WHERE Name = 'Samad'
-            LIMIT 1
-        ];
-        List <Contact> listOfContacts = [SELECT Id FROM Contact WHERE AccountId =: acc.Id];
+		System.assertEquals(24, AccountFetched.AccountAmountOne__c, 'Value should be 24');
+		System.assertEquals(30, AccountFetched.AccountAmountTwo__c, 'Value should be 30');
+		System.assertEquals(8, AccountFetched.NoOfValues__c, 'Value should be 8');
+	}
 
-        delete listOfContacts;
+    
+	@isTest
+	static void validateDelete() {
+		Account acc = [
+			SELECT Id
+			FROM Account
+			WHERE Name = 'Test Account'
+			LIMIT 1
+		];
+		List<Contact> listOfContacts = [SELECT Id FROM Contact WHERE AccountId = :acc.Id];
 
-        List <AggregateResult> aggregateResults = [SELECT AccountId,
-            SUM(ContactAmountOne__c) AmountOne,
-            SUM(ContactAmountTwo__c) AmountTwo,
-            SUM(NoOfValues__c) NoOf
-            FROM Contact
-            WHERE AccountId =: acc.Id
-            GROUP BY AccountId
-        ];
+		delete listOfContacts;
 
-        System.debug('after Delete: ' + aggregateResults);
+		Account AccountFetched = [
+			SELECT id, AccountAmountOne__c, AccountAmountTwo__c, NoOfValues__c
+			FROM Account
+			WHERE id = :acc.id
+		];
 
-        System.assertEquals(0, aggregateResults.size(), 'There should be 0 results ');
-    }
+		System.debug('after Delete: ' + AccountFetched);
+
+		System.assertEquals(0, AccountFetched.AccountAmountOne__c, 'Value should be 0');
+		System.assertEquals(0, AccountFetched.AccountAmountTwo__c, 'Value should be 0');
+		System.assertEquals(0, AccountFetched.NoOfValues__c, 'Value should be 0');
+	}
 }
-

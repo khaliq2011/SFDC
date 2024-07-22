@@ -16,7 +16,6 @@ Trigger ContactTrigger ON Contact(AFTER INSERT, AFTER UPDATE, AFTER DELETE) {
         }
     }
 
-
     if (!accids.isEmpty()) {
         System.debug('sent to class from trigger');
 
