@@ -4,7 +4,7 @@ public class ContactAmountRollUpOnAccount {
                         System.debug('entered class');
                         System.debug(AccountIds);
 
- List<AggregateResult> aggregateResults = [SELECT AccountId,
+     List<AggregateResult> aggregateResults = [SELECT AccountId,
                                                   SUM(ContactAmountOne__c) AmountOne,
                                                   SUM(ContactAmountTwo__c) AmountTwo,
                                                   SUM(NoOfValues__c) NoOf
