@@ -11,7 +11,6 @@ Trigger ContactTrigger ON Contact(AFTER INSERT, AFTER UPDATE, AFTER DELETE) {
                 Contact oldCon = Trigger.oldMap.get(c.Id);
                 accids.add(oldCon.AccountId);
                 accids.add(oldCon.AccountId);
-
             }
         }
     }

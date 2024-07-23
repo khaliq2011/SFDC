@@ -13,6 +13,7 @@ public class ContactAmountRollUpOnAccount {
                                                   GROUP BY AccountId];
                                                   
                                                   System.debug(aggregateResults);
+                                                  
 
         List<Account> accountsToUpdate = new List<Account>();
         if(!aggregateResults.isEmpty())
