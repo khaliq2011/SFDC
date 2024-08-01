@@ -1,0 +1,15 @@
+<template>
+    <lightning-card>
+        <lightning-input type="checkbox" label="Show Candidate's List" onchange={processCheckbox}></lightning-input>
+        <b>Details of Candidate Clicked :<i> {CandidateId} - {CandidateName}</i></b>
+
+        <ul>
+            <template for:each={Candidates} for:item="candy">
+                <li key={candy.CID}>
+                    <c-child-to-parent candidates={candy} checked={Checked}
+                        ontile={tileClickHandler}></c-child-to-parent>
+                </li>
+            </template>
+        </ul>
+    </lightning-card>
+</template>

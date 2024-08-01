@@ -1,0 +1,10 @@
+<template>
+    <template if:true={checked}>
+        <div class="slds-p-around_medium lgc-bg">
+            <lightning-tile  type="media" onclick={tileClicked}>
+                <lightning-icon slot="media" icon-name="standard:people"></lightning-icon>
+                {candidates.CID} - {candidates.Name}
+            </lightning-tile>
+        </div>
+    </template>
+</template>
