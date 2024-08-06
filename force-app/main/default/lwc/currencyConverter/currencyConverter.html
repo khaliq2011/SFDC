@@ -1,0 +1,23 @@
+<template>
+    <lightning-card title="Currency Converter">
+    <lightning-input type="number" label="Enter Value" value={inputValue} onchange={handleInputChange}></lightning-input>
+    <lightning-combobox
+        name="From"
+        label="From"
+        value={Fromvalue}
+        placeholder="Select From"
+        options={options}
+        onchange={handleChangeFrom}>
+    </lightning-combobox>
+    <lightning-combobox
+        name="To"
+        label="To"
+        value={Tovalue}
+        placeholder="Select To"
+        options={options}
+        onchange={handleChangeTo}>
+    </lightning-combobox>
+
+    <p>Converted value is: {result}</p>
+</lightning-card>
+</template>
