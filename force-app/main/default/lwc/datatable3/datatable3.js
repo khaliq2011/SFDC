@@ -29,6 +29,7 @@ export default class DataTable3 extends LightningElement {
 
         const keysOfColumns = Object.keys(data[0]).filter(key => key !== 'Contacts');
         console.log('<<<<<<' + keysOfColumns);
+        
 
         let columnsArray = [];
         for (let i = 0; i < keysOfColumns.length; i++) {

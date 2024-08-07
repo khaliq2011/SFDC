@@ -16,6 +16,7 @@ public without sharing class AccountRecordsFetcherUsingFieldSet {
     query =query+','+contquery+(' FROM Contacts ) FROM Account LIMIT 10');
 
     return Database.query(query);
+    
 
 }
 
