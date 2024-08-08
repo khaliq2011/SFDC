@@ -1,0 +1,16 @@
+<template>
+    <lightning-card>
+        <lightning-input type="Number" label="How many ?" onchange={getNumber}></lightning-input>
+        <lightning-input type="Text" label="Like?" onchange={getText}></lightning-input>
+        <lightning-button type="base" label="Search" onclick={fetch}></lightning-button>
+        <lightning-card>
+            <template for:each={AccountRecords} for:item="acc">
+                <li key={acc.id}>
+                    {acc.Name}
+                </li>
+            </template>
+        </lightning-card>
+
+    </lightning-card>
+    
+</template>
