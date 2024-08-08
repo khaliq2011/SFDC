@@ -5,5 +5,6 @@ export default class Proj2grandparent1 extends LightningElement {
     {
         this.template.querySelector("c-project2parent1").resetParent();
 
+
     }
 }
