@@ -1,36 +1,41 @@
 <template>
-    <lightning-card title="To Create Multiple Records">
-    <template for:each={ListOfItems} for:item="item">
+  <lightning-card title="To Create Multiple Records">
+      <template for:each={ListOfItems} for:item="item">
+          <lightning-record-edit-form object-api-name="CustomContact__c" key={item.id} onsuccess={handleSuccess}>
+              <div class="slds-grid slds-wrap">
+                  <div class="slds-col slds-size_1-of-5">
+                      <lightning-input-field field-name="Name"></lightning-input-field>
+                  </div>
+                  <div class="slds-col slds-size_1-of-5">
+                      <lightning-input-field field-name="Email__c"></lightning-input-field>
+                  </div>
+                  <div class="slds-col slds-size_1-of-5">
+                      <lightning-input-field field-name="Email_Opt_Out__c"></lightning-input-field>
+                  </div>
+                  <div class="slds-col slds-size_1-of-5">
+                      <lightning-input-field field-name="Phone__c"></lightning-input-field>
+                  </div>
+                  <div class="slds-col slds-size_1-of-5">
+                      <lightning-icon icon-name="action:new" alternative-text="Add Row" title="Add Row" onclick={addRow} id={item.id} accesskey={item.id}></lightning-icon>
+                      <lightning-icon icon-name="action:delete" alternative-text="Delete Row" title="Delete Row" onclick={deleteRow} data-id={item.id}></lightning-icon>
+                  </div>
+              </div>
+          </lightning-record-edit-form>
+      </template>
+      <lightning-button label="Save Contacts" type="submit" onclick={handleSave}></lightning-button>
+      <lightning-button label="Reset Values" onclick={resetValues}></lightning-button>
+  </lightning-card>
 
-   
-<lightning-record-edit-form object-api-name="Contact" key={item.id}>
-    <div class="slds-grid slds-wrap">
-        
-        <div class="slds-col slds-size_1-of-5">
-<lightning-input-field field-name="LastName"></lightning-input-field>
-          </div>
-          <div class="slds-col slds-size_1-of-5">
-            <lightning-input-field field-name="Email"></lightning-input-field>
-        </div>
-        
-          <div class="slds-col slds-size_1-of-5">
-            <lightning-input-field field-name="HasOptedOutOfEmail"></lightning-input-field>
-        </div>
-          <div class="slds-col slds-size_1-of-5">
-            <lightning-input-field field-name="AccountId"></lightning-input-field>
-        </div>
-        <div class="slds-col slds-size_1-of-5">
-            <lightning-icon icon-name="action:new"  alternative-text="Settings" title="Settings" onclick={addRow} id={item.id} accesskey={item.id}></lightning-icon>
-            <lightning-icon icon-name="action:delete"  alternative-text="Settings" title="Settings" onclick={deleteRow} data-id={item.id}  ></lightning-icon>
+  <lightning-layout multiple-rows>
+      <template for:each={createdRecords} for:item="record">
+          <lightning-layout-item size="2" key={record.id}>
+              <lightning-tile label={record.name}>
+                  <p>Email: {record.Email__c}</p>
+                  <p>Email Opt out?: {record.Email_Opt_Out__c}</p>
+                  <p>Phone: {record.Phone__c}</p>
 
-        </div>
-         
-</div>
-</lightning-record-edit-form>
-       
-</template>
-<lightning-button label="Save Contacts" type="submit" onclick={handleSave}></lightning-button>
-<lightning-button label="Reset Values" onclick={resetValues}></lightning-button>
-
-</lightning-card>
+              </lightning-tile>
+          </lightning-layout-item>
+      </template>
+  </lightning-layout>
 </template>
