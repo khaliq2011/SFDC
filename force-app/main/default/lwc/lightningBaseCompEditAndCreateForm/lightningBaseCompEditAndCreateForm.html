@@ -1,0 +1,32 @@
+<template>
+    <lightning-card>
+        <lightning-record-edit-form object-api-name="Account" onsuccess={sendId}>
+            <lightning-input-field field-name="Name"></lightning-input-field>
+            <lightning-input-field field-name="Rating"></lightning-input-field>
+            <lightning-input-field field-name="AccountSource"></lightning-input-field>
+            <lightning-input-field field-name="Active__c"></lightning-input-field>
+            <lightning-input-field field-name="Description"></lightning-input-field>
+            <lightning-input-field field-name="Industry"></lightning-input-field>
+            <lightning-input-field field-name="Phone"></lightning-input-field>
+
+            <button class="slds-button slds-button_brand slds-button_stretch" type="submit">Create
+                Account</button>
+        </lightning-record-edit-form>
+    </lightning-card>
+
+    <lightning-card>
+        <template if:true={recId}>
+            <lightning-record-view-form object-api-name="Account" record-id={recId}>
+                <lightning-output-field field-name="Name"></lightning-output-field>
+                <lightning-output-field field-name="Rating"></lightning-output-field>
+                <lightning-output-field field-name="AccountSource"></lightning-output-field>
+                <lightning-output-field field-name="Active__c"></lightning-output-field>
+                <lightning-output-field field-name="Description"></lightning-output-field>
+                <lightning-output-field field-name="Industry"></lightning-output-field>
+                <lightning-output-field field-name="Phone"></lightning-output-field>
+                <lightning-output-field field-name="Id"></lightning-output-field>
+            </lightning-record-view-form>
+        </template>
+    </lightning-card>
+
+</template>
