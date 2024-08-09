@@ -10,6 +10,7 @@ System.debug('================================================');
 System.debug(Trigger.old);//null
 
 
+
     }
 if(Trigger.IsInsert & Trigger.IsAfter)
 for(Assignment__c a: Trigger.New)
