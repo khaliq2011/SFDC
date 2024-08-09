@@ -1,24 +1,19 @@
-Trigger ContactTrigger ON Contact(AFTER INSERT, AFTER UPDATE, AFTER DELETE) {
-
-    Set <Id> accids = new Set <Id> ();
-
-    for (Contact c: Trigger.isInsert || Trigger.isUpdate ? Trigger.new : Trigger.old) {
-        if (c.AccountId != null) {
-            System.debug('In trigger');
-
-            accids.add(c.AccountId);
-            if (Trigger.isUpdate) {
-                Contact oldCon = Trigger.oldMap.get(c.Id);
-                accids.add(oldCon.AccountId);
-                accids.add(oldCon.AccountId);
-            }
+trigger ContactTrigger on Contact (after delete, after insert, after update) {
+    Set<Id> accIds = new Set<ID>();    
+    for(Contact c : Trigger.isUpdate || Trigger.isInsert ? Trigger.new : Trigger.old) {
+        if(Trigger.isUpdate) {
+            Contact con = Trigger.oldMap.get(c.Id);
+            if(con.AccountId != null) accIds.add(con.AccountId);
         }
+
+        if(c.AccountId != null) accIds.add(c.AccountId);
     }
 
-    if (!accids.isEmpty()) {
-        System.debug('sent to class from trigger');
-
-        ContactAmountRollUpOnAccount.rollupAmount(accids);
-
+    if(!accIds.isEmpty()) {
+        ContactAmountRollupOnAccount.rollupAmount(accIds);
     }
 }
+
+
+
+
