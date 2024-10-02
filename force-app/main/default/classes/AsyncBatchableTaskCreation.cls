@@ -11,7 +11,9 @@ global class AsyncBatchableTaskCreation implements Database.Batchable<sObject>{
         
         for(Opportunity opp : lstOpp) {
           
-                Task t = new Task();
+         
+         
+            Task t = new Task();
                 t.WhatId = opp.Id;
                 t.OwnerId = (opp.Owner.IsActive==true)?opp.OwnerId:adminUser.Id;
                 t.Subject = 'Please review the related opportunity.';
